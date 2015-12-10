@@ -6,6 +6,6 @@ var output = "";
 $(function(){
 	alert("formJSTestS");
 	console.log(formData);
-
-	$('.pageCont').load('views/aboutContent.html');
+	//placeholder
+	$('.pageCont').load('views/tripReports.html');
 });

@@ -81,11 +81,7 @@ function render() {
 		window.location.replace("http://www.neverlostadventures.com");
 		
 	});
-	$('#displayInventory').click(function() {
-		console.log("click button");
-		$('.pageCont').empty();
-		$('.pageCont').load('data/myInventory.txt');
-	});
+
 	
 	$('.navbar').peek();
 
