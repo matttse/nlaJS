@@ -1,0 +1,182 @@
+/*mtStyles*/
+@media all and (orientation:portrait) {
+
+}
+body {
+    font-family: 'Georgia';
+    background-color: rgb(210, 210, 210);
+    width: 100%;
+    height: 100%;
+    margin: 1px;
+}
+
+.bannerContainer {
+	font-weight: bold;
+	width: 100%;
+	margin: 20px 0;
+	font-size: 20px;
+	border: 0;
+
+}
+
+#title {
+	margin: 10px;
+	color: white;
+	border:1px solid white;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 4px;
+	padding: 7px;
+}
+.button, #homeButton, #invButton, #tripRptButton, #picButton, #aboutButton, #blogButton {
+	color: white;
+	text-decoration: none;
+	width: 20%;
+	text-transform: uppercase;
+	border:1px solid white;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 4px;
+}
+
+.hero-images {
+  overflow: hidden;
+  padding-bottom: 55%;
+
+}
+
+nav {
+	width: 100%;
+	margin: 20px 0;
+	padding-left: 10px;
+	position: fixed;
+
+}
+nav ul {
+	width: 100%;
+	list-style: none;
+	margin: 0;
+	padding-left: 10px;
+}
+nav ul li {
+	display: inline-block;
+
+}
+nav ul li a {
+	white-space: nowrap;
+	width: 100%;
+}
+footer {
+	margin-left: 10px;
+	bottom: 0;
+	position: fixed;
+}
+
+@media (min-width: 600px) {
+	.hero-images { padding-bottom: 50%; }
+
+}
+
+@media (min-width: 700px) {
+	.hero-images { padding-bottom: 45%; }
+
+}
+
+.hero-images img {
+  width: 100%;
+  max-width: none;
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: -1;
+  clear: both;
+
+}
+.pageCont {
+	background-color: transparent;
+	width: 100%;
+	margin-bottom: 0;
+	margin-left: 0;
+	color: black;
+	
+}
+.reports {
+	color: white;
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, 0.6);
+	padding-bottom: 100px;
+	padding-top: 100px;
+	padding-right: 15px;
+	padding-left: 15px;
+	display: block;
+	text-align: center;
+}
+
+.tpImgs {
+	border-radius: 5px;
+	max-width: 30%;
+	max-height: 30%;
+	margin: auto
+	
+}
+
+.pageCont form {
+	color: white;
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, 0.6);
+	padding-bottom: 100px;
+	padding-top: 20px;
+	padding-right: 15px;
+	padding-left: 15px;
+	text-align: justify;
+	
+}
+
+
+.profImg {
+	width:50%;
+	height:50%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	padding: 1px;
+	border: 1px solid #021a40;
+	background-color: white;
+
+}
+
+.foot {
+	text-align: right;
+}
+
+/* Sink */
+.hvr-sink {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  -webkit-transition-property: transform, color, background-color;
+  transition-property: transform, color, background-color;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  
+}
+.hvr-sink:hover, .hvr-sink:focus, .hvr-sink:active {
+	-webkit-transform: translateY(8px);
+	transform: translateY(8px);
+}
+.navbar-default {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.form, .input_string {
+	color: black;
+}
