@@ -120,6 +120,10 @@ footer {
 	margin: auto
 	
 }
+.pano {
+	max-width: 100%;
+	max-height: 50%;
+}
 
 .pageCont form {
 	color: white;
