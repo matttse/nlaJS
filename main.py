@@ -43,7 +43,7 @@ import cgitb; cgitb.enable()
 #Item Inventory
 #######
 def itemInventory():
-    with open("C:/myInventory.txt", "r+") as inventoryFile:
+    with open("C:/myInventory.txt", "a+") as inventoryFile:
         data = inventoryFile.readlines()
         idx = 0
         itemList = "<ul id='inventoryList'>"
