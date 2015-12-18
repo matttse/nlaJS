@@ -3,8 +3,8 @@
 	<form method="post" action="main.py">
 
 			Search Inventory
-			<input class="input_string" type="text" name="search_item" id="searchItem" placeholder="Field Under Construction">
-			<input class="button" type="submit" name="search" value="Search" disabled><br />
+			<input class="input_string" type="text" name="search_item" id="searchItem" placeholder="Item Name/Description/Brand">
+			<input class="button" type="submit" name="search" value="Search"><br />
 			<!-- TODO make this into a toggle/checkbox -->
 			<a href="#display" class="btn btn-default" id="displayInventory">Display Inventory</a>	
 			<a href="#hidden" style="display: none;" class="btn btn-default" id="hideInventory">Hide Inventory</a>		
@@ -15,8 +15,24 @@
 	<form method="post" action="main.py">
 
 			Add Item
-			<input class="input_string" type="text" name="add_item_input" id="addItem" placeholder="Field Under Construction">
-			<input class="button" type="submit" name="add_item" value="Add Item" disabled>
+			<input class="input_string addItem" type="text" name="add_item_input" placeholder="Name">
+			<select class="input_string addItem" name="add_item_input" placeholder="Brand">
+				<option value="1">Black Diamond</option>
+	 			<option value="2">Petzl</option>
+	<!--			<option value="3"></option>
+				<option value="4"></option>
+				<option value="5"></option>
+				<option value="6"></option>
+				<option value="7"></option>
+				<option value="8"></option>
+				<option value="9"></option>
+				<option value="10"></option> -->
+			</select>
+			<input class="input_string addItem" type="number" name="add_item_input" placeholder="Quantity">
+			$<input class="input_string addItem" type="number" min="0" step="0.01" size="4" title="USD Currency - no dollar sign and no comma(s) - cents (.##) are optional" name="add_item_input" placeholder="Current Price">
+			$<input class="input_string addItem" type="number" min="0" step="0.01" size="4" title="USD Currency - no dollar sign and no comma(s) - cents (.##) are optional" name="add_item_input" placeholder="Purchase Price">
+			<input class="input_string addItem" type="date" name="add_item_input" placeholder="Date of Purchase">
+			<input class="button" type="submit" name="add_item" value="Add Item">
 		
 	</form>
 </div>
@@ -24,8 +40,8 @@
 	<form method="get" action="main.py">
 
 			Remove Inventory Item
-			<input class="input_string" type="text" name="remove_item_input" id="rmvItem" placeholder="Field Under Construction">
-			<input class="button" type="submit" name="remove_item" value="Remove Item" disabled>
+			<input class="input_string" type="text" name="remove_item_input" id="rmvItem" placeholder="Item Name/Description/Brand">
+			<input class="button" type="submit" name="remove_item" value="Remove Item">
 
 	</form>
 </div>

@@ -45,7 +45,7 @@ function generateFooter() {
 	htmlOutput += "<footer>";
 
 	htmlOutput += "<div class='foot'>"
-					+ "<a href='https://www.instagram.com/ad.venture.matt/' class='btn btn-default'>Follow me on Instagram</a>"
+					+ "<a href='https://www.instagram.com/neverlost.matt/' class='btn btn-default'>Follow me on Instagram</a>"
 				+ "</div>";
 	htmlOutput += "</footer>";
 }
