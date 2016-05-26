@@ -1,11 +1,11 @@
-#!\Python35\python
+#!\Python27\python
 
 ####
 ## <strong>Object name</strong>: main.py <br />
 ## <strong>Program purpose</strong>: main controller <br />
 ## <strong>Author</strong>: Matthew Tse <br />
 ## <strong>Usage</strong>: Leverage python to control web page <br />
-## <strong>Notes</strong>: Run on Apache 2.2 with CGI enabled and python 3.3+<br />
+## <strong>Notes</strong>: Run on Apache 2.2 with CGI enabled and python 2.7.x<br />
 ##
 ####
 
@@ -18,7 +18,10 @@
 import cgi
 import cgitb; cgitb.enable()
 import datetime, time
-import sqlite3 as db
+import MySQLdb as db
+import json
+import collections
+from pprint import pprint
 
 ########
 #Global Constants
@@ -44,60 +47,50 @@ import sqlite3 as db
 #Inventory DB connection
 #######    
 def getDBConnectionAndCursor():
-    filename = "C:/inventory.db"
-    
     # obtain a connection object to connect to the database
-    conn = db.connect(filename, uri=False)
+    conn = db.connect(host="localhost", user="root", passwd="", db="items")
     
     # get a cursor object with which to run queries
-    cursor = conn.cursor() # ask the connection to give me a cursor object
+    cursor = conn.cursor()
     
-    try:
-##        createTblSql = ("""
-##        CREATE TABLE inventory
-##        (id INTEGER PRIMARY KEY AUTOINCREMENT
-##        , name TEXT NOT NULL
-##        , brand TEXT NOT NULL
-##        , qty INTEGER NOT NULL
-##        , curprice REAL
-##        , purprice REAL
-##        , purDt TEXT
-##        , upDtTm TEXT)
-##        """)
-        createTblSql = ("""
-        CREATE TABLE inventory
-        (id INTEGER PRIMARY KEY AUTOINCREMENT
-        , name TEXT NOT NULL)
-        """)
-        cursor.execute(createTblSql)
-        conn.commit()
-    except conn.Error as msg:
-        print ("An error occured:", msg.args[0])
-##    (brand, name, qty, curprice, purprice, purDt, upDtTm)
-
     return conn, cursor    
 #######
 #Item Inventory
 #######
 def getAllItems():
-##    with open("C:/myInventory.txt", "r+") as inventoryFile:
-##        data = inventoryFile.readlines()
-##        idx = 0
-##        itemList = "<ul id='inventoryList'>"
-##        for item in data:
-##            idx = idx + 1
-##            itemList += "<li id=itemNum{!s}>{!s}</li>".format(idx, item)
-##        itemList += "</ul>"
-##    return (itemList)
+    rtn_val = str(0)
+    #open DB connection
     conn, cursor = getDBConnectionAndCursor()
+    #catch all select
     sql = """
-    select *
-    from inventory
+    SELECT item_id, item_name, description, qty, weight, unit, category
+    from gear_library
     """
-    cursor.execute(sql)
-    data = cursor.fetchall()
+
+    try:
+        cursor.execute(sql)
+        data = cursor.fetchall()
+        json_data = json.dumps(data)
+##        json_file = 'inventory_json.js'
+##        f = open(json_file,'w')
+##        print (f, json_data)
+##        pprint(f, json_data)
+##        for row in data:
+##            item_dict = collections.OrderedDict()
+##
+##        with open('inventory_json.js') as json_file:
+##            json_data = json.load(json_file)
+        rtn_val = str(1)
+    except conn.Error as msg:
+        rtn_val = str(0)
+        
+    #close conn
     conn.close()
-    return (data)
+    if (rtn_val == "1"):
+        
+        return(json_data)
+    else:
+        return(rtn_val)
 
 #######
 #Add Item Inventory
@@ -192,12 +185,15 @@ def loadNavCtrl(search_ind, form_data, stat):
             input_string = form_data["remove_item_input"][0].value
         elif "add_item_input" in form_data:
             input_string = form_data["add_item_input"][0].value
-            
-        jsInject = ('<script type="text/javascript">console.log("{!s}", "added");</script>').format(input_string)
-        body = "{!s}{!s}{!s}".format(scriptImports, navJS, jsInject)
-        
-    else:
-        body = "{!s}{!s}".format(scriptImports, navJS)
+##        else:    
+##            jsInject = ('<script type="text/javascript">console.log("{!s}", "added");alert("jsInject!");</script>').format("console")                    
+##            body = "{!s}{!s}{!s}".format(scriptImports, navJS, jsInject)
+##    elif (type(stat) == "file"):
+    elif (len(stat) > 1):
+            jsInject = ('<script type="text/javascript">console.log("{!s}");</script>').format(stat)                    
+            body = "{!s}{!s}{!s}".format(scriptImports, navJS, jsInject)
+##    else:
+##        body = "{!s}{!s}".format(scriptImports, navJS)
 
     return(body)
     
@@ -258,8 +254,10 @@ def main():
 ##        bodyContent += ('<script type="text/javascript">console.log("{!s}", "list");</script>').format(form["add_item_input"])
     elif "remove_item_input" in form:
         stat = removeItem(form)
+    else:
+        stat = getAllItems()
         
-    bodyContent += loadNavCtrl(search_ind, form, stat)
+        bodyContent += loadNavCtrl(search_ind, form, stat)
     print (bodyContent)
 
 
