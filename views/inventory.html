@@ -6,7 +6,9 @@
 			<input class="input_string" type="text" name="search_item" id="searchItem" placeholder="Item Name/Description/Brand">
 			<input class="button" type="submit" name="search" value="Search"><br />
 			<!-- TODO make this into a toggle/checkbox -->
-			<a href="#display" class="btn btn-default" id="displayInventory">Display Inventory</a>	
+			<!-- <a href="#display" class="btn btn-default" id="displayInventory">Display Inventory</a>	 -->
+			<!-- TODO turn this anchor into an ajax call to the server to get the data, and display it -->
+			<input class="btn btn-default" name="displayInventory" type="submit" value="Display Inventory">	
 			<a href="#hidden" style="display: none;" class="btn btn-default" id="hideInventory">Hide Inventory</a>		
 			<ol class="itemList" id="inventory"></ol>
 	</form>
@@ -37,7 +39,7 @@
 	</form>
 </div>
 <div class="form">
-	<form method="get" action="main.py">
+	<form method="post" action="main.py">
 
 			Remove Inventory Item
 			<input class="input_string" type="text" name="remove_item_input" id="rmvItem" placeholder="Item Name/Description/Brand">

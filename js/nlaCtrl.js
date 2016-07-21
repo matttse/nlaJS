@@ -6,7 +6,7 @@ var htmlOutput = "";
 $(function(){
 	jQuery.support.cors = true;
 	
-    $('#body').html('Never Lost Adventures is loading...');
+    $('#body').html('Carpe Mons is loading...');
 
     render();
 });
@@ -14,7 +14,7 @@ function generateBanner() {
 	htmlOutput += "<header><hgroup>";
 	htmlOutput += "<nav class='navbar navbar-default navbar-fixed-top' role='navigation'>"
 					+ "<h2>"
-						+ "<a id='title' href='#home'>Never Lost Adventures by Matthew Tse</a>"
+						+ "<a id='title' href='#home'>Carpe Mons</a>"
 					+"</h2>"
 						+ "<div class='navbar-header'>"	
 							+ "<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>"						
@@ -78,7 +78,7 @@ function render() {
 		window.location.replace("main.py");
 	});
 	$('#blogButton').click(function() {
-		window.location.replace("http://www.neverlostadventures.com");
+		window.location.replace("http://www.carpemons.com");
 		
 	});
 
