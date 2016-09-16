@@ -1,4 +1,6 @@
 var htmlOutput = "";
+//global var from main.py
+
 /**
 * Main function build page
 * Usage: on ready
@@ -19,19 +21,11 @@ function generateBanner() {
 						+ "<div class='navbar-header'>"	
 							+ "<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>"						
 								+ "<span class='icon-bar'></span>"
-								+ "<span class='icon-bar'></span>"
-								+ "<span class='icon-bar'></span>"
-								+ "<span class='icon-bar'></span>"
-								+ "<span class='icon-bar'></span>"
 							+ "</button>"
 						+ "</div>"
 						+ "<div class='collapse navbar-collapse'>"
 							+ "<ul class='navigation nav navbar-header'>"								
-								+ "<li class='btn btn-inverse'><a href='#blog' class='button hvr-sink' id='blogButton'>Blog</a></li>"
-								+ "<li class='btn btn-inverse'><a href='#tripReports' class='hvr-sink' id='tripRptButton'>Trip Reports</a></li>"
-								+ "<li class='btn btn-inverse'><a href='#pictures' class='button hvr-sink' id='picButton'>Pictures</a></li>"
-								+ "<li class='btn btn-inverse'><a href='#inventory' class='button hvr-sink' id='invButton'>Inventory</a></li>"		 						
-								+ "<li class='btn btn-inverse'><a href='#about' class='button hvr-sink' id='aboutButton'>About</a></li>"
+								+ "<li class='btn btn-inverse'><a href='#about' class='button hvr-sink' id='gearLibrary'>Gear Library</a></li>"
 							+ "</ul>"
 						+ "</div>"
 				+ "</nav>";
@@ -52,34 +46,26 @@ function generateFooter() {
 
 
 function render() {
-	
 	generateBanner();
 	htmlOutput += "<div class='pageCont'></div>";
 	generateFooter();
 	$('.body').html(htmlOutput);
 
-	$('#aboutButton').click(function() {
-		window.open("https://neverlostadventures.wordpress.com/2015/12/04/never-lost-adventures-by-matt-tse/");
-	});
-	$('#tripRptButton').click(function() {
-		$('.pageCont').empty();
-		$('.pageCont').load('views/tripReports.html');
-	});
-	$('#picButton').click(function() {
-		$('.pageCont').empty();
-		$('.pageCont').load('views/pictures.html');
-		
-	});
-	$('#invButton').click(function() {
-		$('.pageCont').empty();
-		$('.pageCont').load('views/inventory.html');
-	});
 	$('#title').click(function() {
 		window.location.replace("main.py");
 	});
-	$('#blogButton').click(function() {
-		window.location.replace("http://www.carpemons.com");
+
+	//returns gear table html
+	$('#gearLibrary').click(function() {
+		// $('.pageCont').empty();
 		
+		// $('.pageCont').load('views/inventory.html');
+		var tableCont = "";
+		var tableHeaders = "<tr><th>item_name</th><th>category</th><th>description</th></tr>";
+		// var tableHeaders = "<tr><th>item_name</th></tr>";
+		tableCont += "<table id='gearTable' border='1'>" + tableHeaders + "</table>";
+		$('.pageCont').append(tableCont);
+		showGearTable();
 	});
 
 	
@@ -95,10 +81,38 @@ function render() {
 		});
 	})
 	
+}
 
-	
+function showGearTable() {
+	// var tableCont = "";
+	// // var tableHeaders = "<tr><th>item_name</th><th>category</th><th>description</th></tr>";
+	// var tableHeaders = "<tr><th>item_name</th></tr>";
+	// tableCont += "<table id='gearTable'>" + tableHeaders + "</table>";
+	// // $('.pageCont').append(tableCont);
 
 
-	
+    $.each(inventory, function(i, item) {
+		$.each(item, function(iter, col) {
+			// console.log(iter);
+			console.log(col);
 
+	        	// $('<tr>').append(
+	         //    // $('<td>').text(col.item_name),
+	         //    // $('<td>').text(col.category),
+	         //    $('<td>').text(col)).appendTo('#gearTable');
+		});
+
+    	$('<tr>').append(
+        // $('<td>').text(col.item_name),
+        // $('<td>').text(col.category),
+        $('<td>').text(item)).appendTo('#gearTable');
+
+        // var $tr = $('<tr>').append(
+        //     $('<td>').text(item.rank),
+        //     $('<td>').text(item.content),
+        //     $('<td>').text(item.UID)
+        // ); //.appendTo('#records_table');
+        
+        // console.log($tr.wrap('<p>').html());
+    });
 }
